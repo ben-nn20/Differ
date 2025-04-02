@@ -1,5 +1,5 @@
 /// Single step in a patch sequence.
-public enum Patch<Element> {
+public enum Patch<Element: Codable>: Codable  {
     /// A single patch step containing an insertion index and an element to be inserted
     case insertion(index: Int, element: Element)
     /// A single patch step containing a deletion index
