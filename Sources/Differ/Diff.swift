@@ -12,9 +12,9 @@ public protocol DiffProtocol: Collection {
 /// "12" -> "": D(0)D(1)
 /// "" -> "12": I(0)I(1)
 /// ```
-public struct Diff: DiffProtocol {
+public struct Diff: DiffProtocol, Codable {
 
-    public enum Element {
+    public enum Element: Codable {
         case insert(at: Int)
         case delete(at: Int)
     }
