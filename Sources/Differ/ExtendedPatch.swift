@@ -1,4 +1,4 @@
-enum BoxedDiffAndPatchElement<T> {
+enum BoxedDiffAndPatchElement<T: Codable> {
     case move(
         diffElement: ExtendedDiff.Element,
         deletion: SortedPatchElement<T>,
@@ -20,7 +20,7 @@ enum BoxedDiffAndPatchElement<T> {
 }
 
 /// Single step in a patch sequence.
-public enum ExtendedPatch<Element> {
+public enum ExtendedPatch<Element: Codable>: Codable {
     /// A single patch step containing the origin and target of a move
     case insertion(index: Int, element: Element)
     /// A single patch step containing a deletion index
@@ -161,7 +161,7 @@ extension ExtendedDiff {
     }
 }
 
-func unbox<T>(_ element: BoxedDiffAndPatchElement<T>) -> [SortedPatchElement<T>] {
+func unbox<T: Codable>(_ element: BoxedDiffAndPatchElement<T>) -> [SortedPatchElement<T>] {
     switch element {
     case let .move(_, deletion, insertion):
         return [deletion, insertion]

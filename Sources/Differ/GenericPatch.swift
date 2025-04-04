@@ -1,4 +1,4 @@
-struct SortedPatchElement<T> {
+struct SortedPatchElement<T: Codable>: Codable {
     var value: Patch<T>
     let sourceIndex: Int
     let sortedIndex: Int
